@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import CloseIcon from "../../assets/icons/close.svg";
 
 function Hotels() {
   const [allHotels, setAllHotels] = useState([]);
@@ -260,9 +261,9 @@ function Hotels() {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
+            <button className="close" onClick={closeModal}>
+              <img src={CloseIcon} alt="Close" className="close-icon" />
+            </button>
             <h2>Nuevo hotel</h2>
             <form onSubmit={handleSubmit}>
               <div className="row">
@@ -375,12 +376,19 @@ function Hotels() {
                   </div>
                 </div>
               ))}
+              <div className="modal-btns">
+                <button
+                  type="button"
+                  className="add-room modal-content-button"
+                  onClick={addAdditionalField}
+                >
+                  Agregar habitación adicional
+                </button>
 
-              <button type="button" className="modal-content-button" onClick={addAdditionalField}>
-                Agregar habitación adicional
-              </button>
-
-              <button className="modal-content-button" type="submit">Guardar</button>
+                <button className="modal-content-button" type="submit">
+                  Guardar
+                </button>
+              </div>
             </form>
           </div>
         </div>
