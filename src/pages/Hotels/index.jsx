@@ -310,72 +310,77 @@ function Hotels() {
                   />
                 </div>
               </div>
-
-              <h3>Habitaciones adicionales</h3>
+              <h3>Habitaciones del hotel</h3>
               {additionalFields.map((field, index) => (
                 <div key={index}>
-                  <label htmlFor={`room-type-${index}`}>
-                    Tipo de habitación
-                  </label>
-                  <select
-                    id={`room-type-${index}`}
-                    name={`room-type-${index}`}
-                    className="dashboard-form-input"
-                    onChange={(event) => handleRoomTypeChange(event, index)}
-                  >
-                    <option value="">Seleccione</option>
-                    {roomType.map((type) => (
-                      <option key={type.id} value={type.id}>
-                        {type.name}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="row">
+                    <div className="column">
+                      <label htmlFor={`room-type-${index}`}>
+                        Tipo de habitación
+                      </label>
+                      <select
+                        id={`room-type-${index}`}
+                        name={`room-type-${index}`}
+                        className="dashboard-form-input"
+                        onChange={(event) => handleRoomTypeChange(event, index)}
+                      >
+                        <option value="">Seleccione</option>
+                        {roomType.map((type) => (
+                          <option key={type.id} value={type.id}>
+                            {type.name}
+                          </option>
+                        ))}
+                      </select>
 
-                  <label htmlFor={`accommodation-${index}`}>
-                    Tipo de acomodación
-                  </label>
-                  <select
-                    id={`accommodation-${index}`}
-                    name={`accommodation-${index}`}
-                    className="dashboard-form-input"
-                    onChange={(event) =>
-                      handleAccommodationChange(event, index)
-                    }
-                  >
-                    <option value="">Seleccione</option>
-                    {accommodation.map((acc) => (
-                      <option key={acc.id} value={acc.id}>
-                        {acc.name}
-                      </option>
-                    ))}
-                  </select>
+                      <label htmlFor={`accommodation-${index}`}>
+                        Tipo de acomodación
+                      </label>
+                      <select
+                        id={`accommodation-${index}`}
+                        name={`accommodation-${index}`}
+                        className="dashboard-form-input"
+                        onChange={(event) =>
+                          handleAccommodationChange(event, index)
+                        }
+                      >
+                        <option value="">Seleccione</option>
+                        {accommodation.map((acc) => (
+                          <option key={acc.id} value={acc.id}>
+                            {acc.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="column">
+                      <label htmlFor={`num-rooms-${index}`}>
+                        Número de habitaciones
+                      </label>
+                      <input
+                        type="number"
+                        id={`num-rooms-${index}`}
+                        name={`num-rooms-${index}`}
+                        className="dashboard-form-input"
+                        min="0"
+                        onChange={(event) => handleNumRoomsChange(event, index)}
+                      />
 
-                  <label htmlFor={`num-rooms-${index}`}>
-                    Número de habitaciones
-                  </label>
-                  <input
-                    type="number"
-                    id={`num-rooms-${index}`}
-                    name={`num-rooms-${index}`}
-                    className="dashboard-form-input"
-                    min="0"
-                    onChange={(event) => handleNumRoomsChange(event, index)}
-                  />
-
-                  <button
-                    type="button"
-                    onClick={() => removeAdditionalField(index)}
-                  >
-                    Eliminar
-                  </button>
+                      <button
+                        type="button"
+                        className="modal-content-button-error"
+                        onClick={() => removeAdditionalField(index)}
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  </div>
                 </div>
               ))}
 
-              <button type="button" onClick={addAdditionalField}>
-                Agregar campo adicional
+              <button type="button" className="modal-content-button" onClick={addAdditionalField}>
+                Agregar habitación adicional
               </button>
 
-              <button type="submit">Guardar</button>
+              <button className="modal-content-button" type="submit">Guardar</button>
             </form>
           </div>
         </div>

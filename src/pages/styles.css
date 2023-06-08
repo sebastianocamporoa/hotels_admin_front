@@ -226,7 +226,7 @@ td span {
     padding: 0 10px;
   }
   
-  .modal-content button {
+  .modal-content-button {
     padding: 8px 16px;
     background-color: #4caf50;
     color: #fff;
@@ -235,8 +235,22 @@ td span {
     cursor: pointer;
   }
   
-  .modal-content button:hover {
+  .modal-content-button:hover {
     background-color: #45a049;
+  }
+
+  .modal-content-button-error {
+    padding: 13px 50px;
+    margin-top: 5%;
+    background-color: #FF0000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .modal-content-button-error:hover {
+    background-color: #d40202;;
   }
 
   input,
