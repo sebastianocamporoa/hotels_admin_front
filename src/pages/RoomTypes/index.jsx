@@ -26,11 +26,7 @@ function RoomTypes() {
         `https://hotelsadmin-production.up.railway.app/api/room-types/${id}`
       );
       if (response.status === 200) {
-        Swal.fire(
-          "Tipo de habitación eliminada correctamente",
-          "",
-          "success"
-        );
+        Swal.fire("Tipo de habitación eliminada correctamente", "", "success");
       }
       getRoomTypes();
     } catch (error) {
@@ -70,10 +66,7 @@ function RoomTypes() {
   return (
     <div className="dashboard-content">
       <div className="dashbord-header-container">
-        <button
-          className="dashbord-header-btn"
-          onClick={toggleModal}
-        >
+        <button className="dashbord-header-btn" onClick={toggleModal}>
           Nuevo tipo de habitación
         </button>
       </div>
@@ -96,7 +89,7 @@ function RoomTypes() {
             <tr>
               <th>ID</th>
               <th>NOMBRE</th>
-              <th></th>
+              {/* <th></th> */}
               <th></th>
             </tr>
           </thead>
@@ -110,9 +103,9 @@ function RoomTypes() {
                   <td>
                     <span>{roomType.name}</span>
                   </td>
-                  <td>
+                  {/* <td>
                     <button className="dashbord-header-btn">Editar</button>
-                  </td>
+                  </td> */}
                   <td>
                     <button
                       className="dashbord-btn-warning"

@@ -208,7 +208,7 @@ function Hotels() {
             <th>CIUDAD</th>
             <th>DIRECCIÓN</th>
             <th>NIT</th>
-            <th></th>
+            {/* <th></th> */}
             <th></th>
           </thead>
 
@@ -231,9 +231,9 @@ function Hotels() {
                   <td>
                     <span>{hotel.nit}</span>
                   </td>
-                  <td>
+                  {/* <td>
                     <button className="dashbord-header-btn">Editar</button>
-                  </td>
+                  </td> */}
                   <td>
                     <button
                       className="dashbord-btn-warning"
