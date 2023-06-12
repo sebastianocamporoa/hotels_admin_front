@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "../styles.css";
+import "../../components/loader/styles.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Loader from "../../components/loader";
 
 function RoomTypes() {
   const [allRoomTypes, setAllRoomTypes] = useState([]);
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [username, setUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function getRoomTypes() {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         "https://hotelsadmin-production.up.railway.app/api/room-types"
       );
       setAllRoomTypes(response.data.data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -63,7 +68,7 @@ function RoomTypes() {
     }
   };
 
-  return (
+  return !isLoading ? (
     <div className="dashboard-content">
       <div className="dashbord-header-container">
         <button className="dashbord-header-btn" onClick={toggleModal}>
@@ -86,12 +91,10 @@ function RoomTypes() {
 
         <table>
           <thead>
-            <tr>
-              <th>ID</th>
-              <th>NOMBRE</th>
-              {/* <th></th> */}
-              <th></th>
-            </tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            {/* <th></th> */}
+            <th></th>
           </thead>
           {allRoomTypes.length !== 0 ? (
             <tbody>
@@ -104,8 +107,8 @@ function RoomTypes() {
                     <span>{roomType.name}</span>
                   </td>
                   {/* <td>
-                    <button className="dashbord-header-btn">Editar</button>
-                  </td> */}
+                      <button className="dashbord-header-btn">Editar</button>
+                    </td> */}
                   <td>
                     <button
                       className="dashbord-btn-warning"
@@ -122,7 +125,9 @@ function RoomTypes() {
 
         {allRoomTypes.length === 0 && (
           <div className="dashboard-content-footer">
-            <span className="empty-table">No hay hoteles registrados</span>
+            <span className="empty-table">
+              No hay tipos de habitación registrados
+            </span>
           </div>
         )}
       </div>
@@ -144,6 +149,8 @@ function RoomTypes() {
         </div>
       )}
     </div>
+  ) : (
+    <Loader />
   );
 }
 
