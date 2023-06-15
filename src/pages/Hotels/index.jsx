@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import "../styles.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import CloseIcon from "../../assets/icons/close.svg";
+import Loader from "../../components/loader";
+
+import "../styles.css";
 
 function Hotels() {
   const [allHotels, setAllHotels] = useState([]);
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [roomType, setRoomType] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [accommodation, setAccommodation] = useState([]);
   const [newHotelData, setNewHotelData] = useState({
     name: "",
@@ -20,10 +23,12 @@ function Hotels() {
   const [additionalFields, setAdditionalFields] = useState([]);
 
   async function getHotels() {
+    setIsLoading(true);
     const response = await axios.get(
       "https://hotelsadmin-production.up.railway.app/api/hotels"
     );
     setAllHotels(response.data.data);
+    setIsLoading(false);
   }
 
   async function getRoomTypes() {
@@ -126,9 +131,7 @@ function Hotels() {
         }
       );
 
-      console.log(response.data);
-
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200) {
         Swal.fire("Hotel creado correctamente", "", "success");
         getHotels();
         closeModal();
@@ -179,7 +182,7 @@ function Hotels() {
     setAdditionalFields(updatedFields);
   };
 
-  return (
+  return !isLoading ? (
     <div className="dashboard-content">
       <div className="dashbord-header-container">
         <button className="dashbord-header-btn" onClick={openModal}>
@@ -394,6 +397,8 @@ function Hotels() {
         </div>
       )}
     </div>
+  ) : (
+    <Loader />
   );
 }
 
